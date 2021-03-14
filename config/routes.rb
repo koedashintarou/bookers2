@@ -1,8 +1,13 @@
+
 Rails.application.routes.draw do
   devise_for :users
   root 'homes#top'
   get "home/about" => 'homes#about', as:'about' 
-  resources :books
+  resources :books do
+   resources :post_comments, only: [:create, :destroy]
+  end
   resources :users
+ 
+  
 
 end
